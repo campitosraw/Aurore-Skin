@@ -1,0 +1,746 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <base target="_self">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AURORE SKIN | Luxury Facial Serum</title>
+  <meta name="description" content="Premium hydration serum inspired by summer light. Your summer essential.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400;1,500&family=Outfit:wght@200;300;400&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --white: #FDFCFA;
+      --sand: #F5F0E8;
+      --sand-dark: #E8DDD0;
+      --text: #1C1A18;
+      --text-muted: rgba(28,26,24,0.45);
+      --text-light: rgba(28,26,24,0.28);
+      --gold: #BFA06A;
+      --gold-light: rgba(191,160,106,0.18);
+      --rule: rgba(28,26,24,0.1);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--white);
+      color: var(--text);
+      font-family: 'Outfit', sans-serif;
+      font-weight: 300;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      justify-content: center;
+      padding: 28px 40px;
+      transition: transform 0.4s ease, background 0.4s ease;
+    }
+    nav.hidden { transform: translateY(-100%); }
+    nav.scrolled { background: rgba(253,252,250,0.88); backdrop-filter: blur(12px); padding: 18px 40px; }
+
+    .nav-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-weight: 300;
+      font-size: 1.1rem;
+      letter-spacing: 0.35em;
+      color: var(--text);
+      text-decoration: none;
+    }
+
+    /* ── HERO ── */
+    #hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 120px 40px 80px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 70% 60% at 50% 30%, rgba(230,210,175,0.28) 0%, transparent 70%),
+        radial-gradient(ellipse 40% 50% at 75% 60%, rgba(168,200,195,0.12) 0%, transparent 60%),
+        var(--white);
+    }
+
+    /* sun flare */
+    .hero-bg::after {
+      content: '';
+      position: absolute;
+      top: 8%; left: 58%;
+      width: 260px; height: 260px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(255,230,160,0.22) 0%, transparent 70%);
+      filter: blur(30px);
+    }
+
+    .hero-eyebrow {
+      font-family: 'Outfit', sans-serif;
+      font-weight: 200;
+      font-size: 0.65rem;
+      letter-spacing: 0.55em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 2.8rem;
+      position: relative;
+      opacity: 0;
+      transform: translateY(16px);
+      animation: fadeUp 1s 0.2s forwards;
+    }
+
+    .hero-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-weight: 300;
+      font-size: clamp(4rem, 10vw, 8.5rem);
+      letter-spacing: 0.18em;
+      line-height: 0.9;
+      color: var(--text);
+      position: relative;
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeUp 1.1s 0.35s forwards;
+    }
+
+    .hero-sub {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-weight: 300;
+      font-size: clamp(1.2rem, 2.5vw, 1.7rem);
+      color: rgba(28,26,24,0.55);
+      margin-top: 2rem;
+      position: relative;
+      opacity: 0;
+      transform: translateY(16px);
+      animation: fadeUp 1s 0.55s forwards;
+    }
+
+    .hero-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 14px;
+      margin-top: 4.5rem;
+      font-family: 'Outfit', sans-serif;
+      font-weight: 200;
+      font-size: 0.7rem;
+      letter-spacing: 0.4em;
+      text-transform: uppercase;
+      color: var(--text);
+      text-decoration: none;
+      cursor: pointer;
+      background: none;
+      border: none;
+      position: relative;
+      opacity: 0;
+      animation: fadeUp 1s 0.8s forwards;
+      transition: color 0.3s;
+    }
+    .hero-cta::after {
+      content: '';
+      display: block;
+      width: 48px; height: 1px;
+      background: var(--gold);
+      transition: width 0.4s ease;
+    }
+    .hero-cta:hover::after { width: 80px; }
+    .hero-cta:hover { color: var(--gold); }
+
+    /* ── SHARED ── */
+    section { position: relative; }
+
+    .rule { width: 100%; height: 1px; background: var(--rule); }
+
+    .section-label {
+      font-weight: 200;
+      font-size: 0.6rem;
+      letter-spacing: 0.5em;
+      text-transform: uppercase;
+      color: var(--gold);
+      display: block;
+      margin-bottom: 1.8rem;
+    }
+
+    h2.editorial {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-weight: 300;
+      font-size: clamp(2.4rem, 5vw, 4rem);
+      line-height: 1.1;
+      color: var(--text);
+    }
+
+    /* ── ABOUT ── */
+    #about {
+      padding: 120px 8vw;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: start;
+    }
+
+    @media (max-width: 768px) { #about { grid-template-columns: 1fr; gap: 48px; padding: 80px 6vw; } }
+
+    .about-body {
+      font-size: 1rem;
+      line-height: 1.85;
+      color: rgba(28,26,24,0.6);
+      margin-top: 2rem;
+    }
+
+    .feature-list { list-style: none; padding: 0; margin-top: 1rem; }
+    .feature-list li {
+      display: flex;
+      align-items: baseline;
+      gap: 20px;
+      padding: 22px 0;
+      border-bottom: 1px solid var(--rule);
+      font-size: 0.9rem;
+      font-weight: 300;
+      color: var(--text);
+    }
+    .feature-list li:first-child { border-top: 1px solid var(--rule); }
+    .feature-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 0.75rem;
+      color: var(--gold);
+      min-width: 20px;
+    }
+    .feature-sub {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      margin-top: 3px;
+    }
+
+    /* ── BENEFITS ── */
+    #benefits {
+      background: var(--sand);
+      padding: 120px 8vw;
+    }
+
+    .benefits-header {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      margin-bottom: 80px;
+      gap: 40px;
+      flex-wrap: wrap;
+    }
+
+    .benefits-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1px;
+      background: var(--rule);
+    }
+
+    @media (max-width: 900px) { .benefits-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 500px) { .benefits-grid { grid-template-columns: 1fr; } }
+
+    .benefit-card {
+      background: var(--sand);
+      padding: 48px 36px;
+    }
+
+    .benefit-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 2.8rem;
+      font-weight: 300;
+      color: rgba(191,160,106,0.3);
+      display: block;
+      margin-bottom: 32px;
+      line-height: 1;
+    }
+
+    .benefit-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 1.35rem;
+      font-weight: 400;
+      display: block;
+      margin-bottom: 10px;
+    }
+
+    .benefit-desc {
+      font-size: 0.82rem;
+      font-weight: 300;
+      color: var(--text-muted);
+      line-height: 1.65;
+    }
+
+    /* ── SENSORY ── */
+    #sensory {
+      background: var(--sand-dark);
+      padding: 160px 8vw;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    #sensory::before {
+      content: '';
+      position: absolute;
+      top: -20%; left: 30%;
+      width: 500px; height: 500px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(255,220,140,0.18) 0%, transparent 65%);
+      filter: blur(50px);
+    }
+
+    .sensory-quote {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-weight: 300;
+      font-size: clamp(1.7rem, 3.5vw, 2.8rem);
+      line-height: 1.45;
+      max-width: 780px;
+      margin: 0 auto 60px;
+      color: var(--text);
+      position: relative;
+    }
+
+    .sensory-byline {
+      font-weight: 200;
+      font-size: 0.62rem;
+      letter-spacing: 0.5em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+
+    /* ── INGREDIENTS ── */
+    #ingredients {
+      padding: 120px 8vw;
+      display: grid;
+      grid-template-columns: 1fr 2fr;
+      gap: 80px;
+      align-items: start;
+    }
+
+    @media (max-width: 768px) { #ingredients { grid-template-columns: 1fr; gap: 48px; padding: 80px 6vw; } }
+
+    .ingredient-row {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 24px;
+      padding: 28px 0;
+      border-bottom: 1px solid var(--rule);
+    }
+    .ingredient-row:first-child { border-top: 1px solid var(--rule); }
+
+    .ingredient-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 1.25rem;
+      font-weight: 400;
+    }
+
+    .ingredient-desc {
+      font-size: 0.8rem;
+      font-weight: 300;
+      color: var(--text-muted);
+      text-align: right;
+    }
+
+    /* ── GALLERY ── */
+    #gallery {
+      padding: 0 0 120px;
+      background: var(--white);
+    }
+
+    .gallery-header {
+      padding: 100px 8vw 60px;
+    }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      grid-template-rows: auto auto;
+      gap: 3px;
+    }
+
+    @media (max-width: 768px) { .gallery-grid { grid-template-columns: repeat(2, 1fr); } }
+
+    .gallery-item {
+      overflow: hidden;
+      position: relative;
+    }
+
+    .gallery-item:nth-child(1) { grid-column: span 2; grid-row: span 2; }
+    .gallery-item:nth-child(2) { grid-column: span 2; }
+    .gallery-item:nth-child(3) { grid-column: span 2; }
+    .gallery-item:nth-child(4) { grid-column: span 1; }
+    .gallery-item:nth-child(5) { grid-column: span 2; }
+    .gallery-item:nth-child(6) { grid-column: span 1; }
+
+    @media (max-width: 768px) {
+      .gallery-item:nth-child(n) { grid-column: span 1; grid-row: span 1; }
+    }
+
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      min-height: 220px;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.8s cubic-bezier(0.25,0.1,0.25,1);
+      filter: saturate(0.85) brightness(1.04);
+    }
+
+    .gallery-item:hover img { transform: scale(1.04); }
+
+    .gallery-caption {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      padding: 40px 20px 18px;
+      background: linear-gradient(to top, rgba(28,26,24,0.35), transparent);
+      font-size: 0.62rem;
+      font-weight: 300;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.8);
+      opacity: 0;
+      transition: opacity 0.4s ease;
+    }
+
+    .gallery-item:hover .gallery-caption { opacity: 1; }
+
+    /* ── FINAL CTA ── */
+    #final-cta {
+      background: var(--sand);
+      padding: 160px 40px;
+      text-align: center;
+    }
+
+    #final-cta h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-weight: 300;
+      font-size: clamp(3rem, 7vw, 6rem);
+      line-height: 1;
+      margin-bottom: 1.5rem;
+    }
+
+    #final-cta p {
+      font-weight: 200;
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      letter-spacing: 0.05em;
+      margin-bottom: 4rem;
+    }
+
+    .cta-btn {
+      display: inline-block;
+      font-family: 'Outfit', sans-serif;
+      font-weight: 300;
+      font-size: 0.75rem;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      color: var(--white);
+      background: var(--text);
+      padding: 20px 52px;
+      border: none;
+      cursor: pointer;
+      transition: background 0.4s, letter-spacing 0.4s;
+    }
+    .cta-btn:hover { background: var(--gold); letter-spacing: 0.5em; }
+
+    .cta-trust {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 28px;
+      margin-top: 2.8rem;
+    }
+
+    .cta-trust span {
+      font-size: 0.65rem;
+      font-weight: 200;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--text-light);
+    }
+
+    .cta-trust .dot { width: 3px; height: 3px; border-radius: 50%; background: var(--gold); opacity: 0.5; }
+
+    /* ── FOOTER ── */
+    footer {
+      padding: 60px 40px;
+      border-top: 1px solid var(--rule);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+
+    .footer-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-weight: 300;
+      font-size: 1rem;
+      letter-spacing: 0.3em;
+    }
+
+    .footer-right {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+    }
+
+    .footer-copy {
+      font-size: 0.65rem;
+      font-weight: 200;
+      letter-spacing: 0.15em;
+      color: var(--text-muted);
+    }
+
+    .footer-ig {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 1.1rem;
+      transition: color 0.3s;
+    }
+    .footer-ig:hover { color: var(--gold); }
+
+    /* ── SCROLL FADE ── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.9s ease, transform 0.9s ease;
+    }
+    .reveal.visible { opacity: 1; transform: none; }
+
+    @keyframes fadeUp {
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Nav -->
+  <nav id="navbar">
+    <a href="#hero" class="nav-logo">AURORE SKIN</a>
+  </nav>
+
+  <!-- Hero -->
+  <section id="hero">
+    <div class="hero-bg"></div>
+    <span class="hero-eyebrow">Your summer essential</span>
+    <h1 class="hero-title">Aurore<br>Skin</h1>
+    <p class="hero-sub">Hydration that feels like summer.</p>
+    <button class="hero-cta" onclick="document.getElementById('about').scrollIntoView({behavior:'smooth'})">
+      Discover the serum
+    </button>
+  </section>
+
+  <!-- About -->
+  <section id="about">
+    <div class="reveal">
+      <span class="section-label">01 — The serum</span>
+      <h2 class="editorial">Born from light.<br>Made for your skin.</h2>
+      <p class="about-body">AURORE SKIN is a luxury facial serum inspired by the gentle warmth of summer light and the clarity of coastal waters. Each drop delivers hydration that feels weightless, luminous, and deeply replenishing — crafted for those who seek both ritual and results.</p>
+    </div>
+    <div class="reveal">
+      <ul class="feature-list">
+        <li>
+          <span class="feature-num">01</span>
+          <div>
+            <div>Lightweight hydration</div>
+            <div class="feature-sub">Feels like summer mist on skin</div>
+          </div>
+        </li>
+        <li>
+          <span class="feature-num">02</span>
+          <div>
+            <div>Fast absorption</div>
+            <div class="feature-sub">Sinks in instantly, no residue</div>
+          </div>
+        </li>
+        <li>
+          <span class="feature-num">03</span>
+          <div>
+            <div>Daily skincare essential</div>
+            <div class="feature-sub">A ritual for every morning</div>
+          </div>
+        </li>
+        <li>
+          <span class="feature-num">04</span>
+          <div>
+            <div>Suitable for all skin types</div>
+            <div class="feature-sub">Gentle, balanced, effective</div>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <div class="rule"></div>
+
+  <!-- Benefits -->
+  <section id="benefits">
+    <div class="benefits-header reveal">
+      <div>
+        <span class="section-label">02 — Key benefits</span>
+        <h2 class="editorial">What it does<br>for you</h2>
+      </div>
+    </div>
+    <div class="benefits-grid reveal">
+      <div class="benefit-card">
+        <span class="benefit-num">01</span>
+        <span class="benefit-title">Deep Hydration</span>
+        <p class="benefit-desc">Plumps and replenishes moisture deep within the skin barrier</p>
+      </div>
+      <div class="benefit-card">
+        <span class="benefit-num">02</span>
+        <span class="benefit-title">Summer Glow</span>
+        <p class="benefit-desc">A luminous, lit-from-within finish for everyday wear</p>
+      </div>
+      <div class="benefit-card">
+        <span class="benefit-num">03</span>
+        <span class="benefit-title">Lightweight Texture</span>
+        <p class="benefit-desc">Absorbs in seconds — never heavy, never greasy</p>
+      </div>
+      <div class="benefit-card">
+        <span class="benefit-num">04</span>
+        <span class="benefit-title">Everyday Luxury</span>
+        <p class="benefit-desc">Skincare that elevates the most ordinary morning</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Sensory -->
+  <section id="sensory">
+    <div class="reveal">
+      <p class="sensory-quote">"Inspired by sunlight reflecting on water, warm sand and effortless beauty."</p>
+      <p class="sensory-byline">Aurore Skin — The serum</p>
+    </div>
+  </section>
+
+  <!-- Ingredients -->
+  <section id="ingredients">
+    <div class="reveal">
+      <span class="section-label">03 — Formula</span>
+      <h2 class="editorial">Formulated<br>with intention</h2>
+    </div>
+    <div class="reveal">
+      <div class="ingredient-row">
+        <span class="ingredient-name">Hyaluronic Acid</span>
+        <span class="ingredient-desc">Deep moisture retention</span>
+      </div>
+      <div class="ingredient-row">
+        <span class="ingredient-name">Aloe Vera</span>
+        <span class="ingredient-desc">Soothing and calming</span>
+      </div>
+      <div class="ingredient-row">
+        <span class="ingredient-name">Vitamin E</span>
+        <span class="ingredient-desc">Antioxidant protection</span>
+      </div>
+      <div class="ingredient-row">
+        <span class="ingredient-name">Marine Extracts</span>
+        <span class="ingredient-desc">Ocean-fresh hydration</span>
+      </div>
+    </div>
+  </section>
+
+  <div class="rule"></div>
+
+  <!-- Gallery -->
+  <section id="gallery">
+    <div class="gallery-header reveal">
+      <span class="section-label">04 — The Aurore Edit</span>
+      <h2 class="editorial">The light<br>that moves you</h2>
+    </div>
+    <div class="gallery-grid">
+      <div class="gallery-item">
+        <img src="https://images.unsplash.com/photo-1596462502278-27bfdc403348?w=800&auto=format&fit=crop&q=80" alt="Serum bottle">
+        <span class="gallery-caption">Summer light</span>
+      </div>
+      <div class="gallery-item">
+        <img src="https://images.unsplash.com/photo-1616394584738-fc6e612e71b9?w=600&auto=format&fit=crop&q=80" alt="Skincare ritual">
+        <span class="gallery-caption">Morning ritual</span>
+      </div>
+      <div class="gallery-item">
+        <img src="https://images.unsplash.com/photo-1598440947619-2c35fc9aa908?w=600&auto=format&fit=crop&q=80" alt="Golden hour">
+        <span class="gallery-caption">Golden hour</span>
+      </div>
+      <div class="gallery-item">
+        <img src="https://images.unsplash.com/photo-1570194065650-d99fb4bedf0a?w=400&auto=format&fit=crop&q=80" alt="Skin texture">
+        <span class="gallery-caption">Luminous</span>
+      </div>
+      <div class="gallery-item">
+        <img src="https://images.unsplash.com/photo-1571781926291-c477ebfd024b?w=600&auto=format&fit=crop&q=80" alt="Natural ingredients">
+        <span class="gallery-caption">Botanical</span>
+      </div>
+      <div class="gallery-item">
+        <img src="https://images.unsplash.com/photo-1556228578-dd539282b964?w=400&auto=format&fit=crop&q=80" alt="Glow">
+        <span class="gallery-caption">Effortless</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Final CTA -->
+  <section id="final-cta">
+    <h2 class="reveal">Ready to glow?</h2>
+    <p class="reveal">Your summer ritual starts here.</p>
+    <button class="cta-btn reveal" onclick="alert('Thank you for your interest in AURORE SKIN.')">
+      Experience Aurore Skin
+    </button>
+    <div class="cta-trust reveal">
+      <span>Free shipping</span>
+      <div class="dot"></div>
+      <span>Natural formula</span>
+      <div class="dot"></div>
+      <span>Dermatologist tested</span>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-logo">AURORE SKIN</div>
+    <div class="footer-right">
+      <span class="footer-copy">© 2025 Aurore Skin</span>
+      <a href="#" class="footer-ig" aria-label="Instagram">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.5" fill="currentColor" stroke="none"/></svg>
+      </a>
+    </div>
+  </footer>
+
+  <script>
+    // Navbar scroll behavior
+    const navbar = document.getElementById('navbar');
+    let lastY = 0;
+    window.addEventListener('scroll', () => {
+      const y = window.scrollY;
+      navbar.classList.toggle('scrolled', y > 60);
+      navbar.classList.toggle('hidden', y > lastY && y > 120);
+      lastY = y;
+    }, { passive: true });
+
+    // Scroll reveal
+    const reveals = document.querySelectorAll('.reveal');
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); } });
+    }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+    reveals.forEach(el => io.observe(el));
+  </script>
+</body>
+</html>
